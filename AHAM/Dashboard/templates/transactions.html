@@ -1,0 +1,132 @@
+{% extends 'base.html' %}
+{% load static %}
+{% load custom_filters %}
+
+{% block header %}
+<style>
+    .content {
+        background-color: white;
+        padding: 20px;
+        border-radius: 10px;
+    }
+
+    /* for top action buttons */
+    .noti-container {
+        display: inline-flex;
+        margin-left: 15px;
+    }
+
+    .pfp-container {
+        display: inline-flex;
+        margin-left: 8px;
+    }
+
+    .noti-count {
+        color: #fff;
+        background-color: #5840BB;
+        border-radius: 50%;
+        border: 2px solid #5840BB;
+        font-size: 7px;
+        font-style: normal;
+        padding: 2px 5px;
+        vertical-align: top;
+        margin: -10px 0 0 -12px;
+        position: relative;
+    }
+    /* end of top action buttons */
+    
+    .label-title {
+        font-weight: bold;
+    }
+
+    .detail-row {
+        margin: 20px 0 20px 0;
+    }
+</style>
+{% endblock %}
+
+{% block sidebar %}
+    {% include 'lib/_sidebar.html' %}
+{% endblock %}
+
+{% block content %}
+<div class="content">
+    <!-- top area of dashboard -->
+    <div class="row">
+        <div class="col-12">
+            <div class="d-flex justify-content-between">
+                <a href="{% url 'dashboard' %}" type="button" class="btn m-0" style="background-color: #F3F6FF;"><i class="bi bi-arrow-left" style="font-size: 1rem;"></i></a>
+                
+                <div class="main d-flex">
+                    <!-- notification button and count mark -->
+                    <div class="noti-container">
+                        <button type="button" class="btn m-0" style="background-color: #F3F6FF;">
+                            <i class="bi bi-bell" style="font-size: 1rem;"></i>
+                        </button>
+                    </div>
+                    <div>
+                        <span class="float-right noti-count" id="notiCount">0</span>
+                    </div>
+                    <!-- profile pic -->
+                    <div class="pfp-container">
+                        <button type="button" class="btn m-0" style="background-color: #F3F6FF;">
+                            <i class="bi bi-person-circle" style="font-size: 1rem;"></i>
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- end of top area -->
+
+    <div class="container">
+        <div class="row mt-2">
+            <div class="card p-0" style="border-width: 0; box-shadow: none;">
+                <div class="card-body">
+                    <h5><strong>All Transaction History</strong></h5>
+                    <table id="historyTable" class="table table-striped" style="width:100%">
+                        <thead>
+                            <tr>
+                                <th>Fund Name</th>
+                                <th>Amount</th>
+                                <th>Unit</th>
+                                <th>Total</th>
+                                <th>Investment Date</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            
+                            {% for item in data %}
+                            {% for each in item.transactions %}
+                            <tr>
+                                <td>{{ item.name }}</td>
+                                <td>RM{{ each.amount|floatformat:2 }}</td>
+                                <td>{{ each.unit }}</td>
+                                <td>RM{{ each.amount|multiply:each.unit|floatformat:2 }}</td>
+                                <td>{{ each.created_at }}</td>
+                            </tr>
+                            {% endfor %}
+                            {% endfor %}
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+      
+    </div>
+    
+{% endblock %}
+
+{% block js %}
+<script>
+// Only allow modal submit upon value entered
+$(document).ready(function() {
+
+    $('#historyTable').DataTable({
+        "searching": true
+    });
+});
+
+</script>
+
+{% endblock %}

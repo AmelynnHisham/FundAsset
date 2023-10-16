@@ -1,0 +1,66 @@
+[
+    {
+        "question":"Where will the application be hosted, and data stored?",
+        "answer":"The application will be hosted, and data stored, on-premise in servers owned and managed by KPMG in Malaysia, whereas the data in the Microsoft Power BI dashboards will be stored on Microsoft cloud-based platform."
+    },
+    {
+        "question":"What are the security features of the application?",
+        "answer":"Security features available in the application includes role-based security, password protection policy, session timeout, secure sockets layer, etc. For the Microsoft Power BI dashboards, the data are secured using Microsoft data protection capabilities such as user authentication, row-level security and sensitive labels."
+    },
+    {
+        "question":"What is the deployment model?",
+        "answer":"The application will be offered to our clients on a subscription basis and deployed using Software as a Service (SaaS) model either stand-alone or packaged with KPMG Forensic’s services."
+    },
+    {
+        "question":"What is the pricing / payment structure?",
+        "answer":"Clients will be charged a fixed annual subscription fee."
+    },
+    {
+        "question":"What is the estimated time taken for deployment?",
+        "answer":"2 working days."
+    },
+    {
+        "question":"Can the application be integrated with other systems?",
+        "answer":"No. The application will be deployed as a stand-alone Software as a Service (SaaS) model."
+    },
+    {
+        "question":"Are the application settings configurable by the client?",
+        "answer":"Certain settings such as the Company’s Introductions and copyright statements may be configured by client. Besides that, client are able to add or amend user roles within the application."
+    },
+    {
+        "question":"Is there a risk-scoring mechanism for the purpose of third-party risk profiling",
+        "answer":"No. Third-party risk assessment is not built into the current version of the tool. However, exception screening is performed based on responses provided in the Third-Party Due Diligence Questionnaires. "
+    },
+    {
+        "question":"Is there a limit to the number of third-parties that can be managed in the application?",
+        "answer":"No limit at the moment."
+    },
+    {
+        "question":"Is there a limit to the number of assessments that can be performed?",
+        "answer":"No limit at the moment."
+    },
+    {
+        "question":"Is there a limit to the number of internal users?",
+        "answer":"No limit at the moment."
+    },
+    {
+        "question":"Is bulk import / export of third-party data possible?",
+        "answer":"No, but it is possible for the Company to export the data into .csv file format using the Microsoft Power BI dashboards."
+    },
+    {
+        "question":"What are the allowable file formats for documents uploaded by third-parties?",
+        "answer":"PDF format only."
+    },
+    {
+        "question":"Can reports / dashboards be downloaded and printed?",
+        "answer":"Yes. The reports may be downloaded in PDF format and the dashboards may be downloaded in PowerPoint or PDF format."
+    },
+    {
+        "question":"Can the application be deployed in Bahasa Malaysia?",
+        "answer":"Can the application be deployed in Bahasa Malaysia?"
+    },
+    {
+        "question":"Do any restrictions apply for KPMG audit clients?",
+        "answer":"Yes. The application is not permissible for SEC audit clients and affiliates.  "
+    }
+]

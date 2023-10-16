@@ -1,0 +1,93 @@
+{% load static %}
+<!DOCTYPE HTML>
+<html dir="ltr" lang="en">
+
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+    <meta name="robots" content="noindex,nofollow" />
+
+    {% if title %}
+    <title>Digital Prints e-Commerce - {{ title }}</title>
+    {% else %}
+    <title>Digital Prints e-Commerce</title>
+    {% endif %}
+    {% block styles %}
+    {% include 'lib/_styles.html' %}
+    {% endblock %}
+
+    {% csrf_token %}
+    <script>
+    const csrftoken = document.querySelector('[name=csrfmiddlewaretoken]').value;
+    </script>
+</head>
+
+<body class="g-sidenav-show bg-gray-400">
+    <div class="preloader">
+        <div class="lds-ripple">
+            <div class="lds-pos"></div>
+            <div class="lds-pos"></div>
+        </div>
+    </div>
+    <!-- todo: if user.is_authenticated -->
+        {% block sidebar %}
+        {% endblock %}
+    
+    <main class="main-content position-relative min-height-vh-100 h-100 border-radius-lg">
+        <!-- todo: if user.is_authenticated -->
+
+            {% block extrabtn %}
+            {% endblock %}
+
+            {% block header %}
+            {% include 'lib/_header.html' %}
+            {% endblock %}
+
+        
+        <div>
+            <div class="container-fluid py-4 min-vh-100">
+                {% if messages %}
+                    {% for message in messages %}
+                        {% if message.tags == 'error' %}
+                        <div class="alert alert-danger alert-dismissible fade show" role="alert">
+                            {{message}}
+                            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"><i class="fa-solid fa-xmark"></i></button>
+                        </div>
+                        {% else %}
+                        <div class="alert alert-{{message.tags}} alert-dismissible fade show" role="alert">
+                            {{message}}
+                            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"><i class="fa-solid fa-xmark"></i></button>
+                        </div>
+                        {% endif %}
+                    {% endfor %}
+                {% endif %}
+                
+                {% block content %}
+                {% endblock %}
+            </div>
+            <div class="mb-3 me-2">
+                {% block footer %}
+                {% include 'lib/_footer.html' %}
+                {% endblock %}
+            </div>
+        </div>
+    </main>
+
+    {% block javascripts %}
+    {% include 'lib/_scripts.html' %}
+    {% endblock %}
+
+    {% block js %}
+    {% endblock %}
+
+    <!-- End Page wrapper  -->
+</body>
+
+</html>
+
+<style>
+    .activeTab {
+        color: #0C233C !important;
+    }
+</style>

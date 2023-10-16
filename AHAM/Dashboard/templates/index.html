@@ -1,0 +1,295 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block header %}
+<style>
+    .content {
+        background-color: white;
+        padding: 20px;
+        border-radius: 10px;
+    }
+
+    /* for top action buttons */
+    .noti-container {
+        display: inline-flex;
+        margin-left: 15px;
+    }
+
+    .pfp-container {
+        display: inline-flex;
+        margin-left: 8px;
+    }
+
+    .noti-count {
+        color: #fff;
+        background-color: #5840BB;
+        border-radius: 50%;
+        border: 2px solid #5840BB;
+        font-size: 7px;
+        font-style: normal;
+        padding: 2px 5px;
+        vertical-align: top;
+        margin: -10px 0 0 -12px;
+        position: relative;
+    }
+    /* end of top action buttons */
+
+    .orders {
+        background-color: #C7F2FF;
+    }
+
+    /* bg for orders icon */
+    .orders-icon-bg {
+        background-color: white;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        border-radius: 10px;
+    }
+
+    .card-grid {
+        display: grid;
+        grid-template-columns: auto 1fr auto;
+        gap: 10px;
+    }
+
+    .bestsellers-img {
+        width: 100%;
+        height: 50px;
+    }
+
+    /* Datatable search function border */
+    div.dataTables_filter input { border: 1px solid black; }
+    
+</style>
+{% endblock %}
+
+{% block sidebar %}
+    {% include 'lib/_sidebar.html' %}
+{% endblock %}
+
+{% block content %}
+<div class="content">
+    <!-- top area of dashboard -->
+    <div class="row">
+        <div class="col-12">
+            <div class="d-flex justify-content-between">
+                <h5 class="my-auto" style="padding-right: 50px;"><strong>Portfolio</strong></h5>
+                
+                <div class="main d-flex">
+                    <!-- notification button and count mark -->
+                    <div class="noti-container">
+                        <button type="button" class="btn" style="background-color: #F3F6FF;">
+                            <i class="bi bi-bell" style="font-size: 1rem;"></i>
+                        </button>
+                    </div>
+                    <div>
+                        <span class="float-right noti-count" id="notiCount">0</span>
+                    </div>
+                    <!-- profile pic -->
+                    <div class="pfp-container">
+                        <button type="button" class="btn" style="background-color: #F3F6FF;">
+                            <i class="bi bi-person-circle" style="font-size: 1rem;"></i>
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- end of top area -->
+
+    <div class="row">
+        <div class="col">
+            <div class="topnav d-flex justify-content-between">
+                <div style="margin-right: auto; width: 80%;">
+                    <div class="d-flex row">
+                        <div class="card col-3 mx-2 p-2">
+                            <div style="border-left: 1.5px solid; padding-left: 5px;">
+                                <span style="font-size: 14px; display: block; width: 100%;"><strong>NET ASSET VALUE</strong></span>
+                                <span style="font-size: 14px; display: block; text-align: right;"><strong>RM 10,230.98</strong></span>
+                            </div>
+                        </div>
+                        <div class="card col-3 mx-2 p-2">
+                            <div style="border-left: 1.5px solid; padding-left: 5px;">
+                                <span style="font-size: 14px; display: block;"><strong>TOTAL INVESTMENT VALUE</strong></span>
+                                <span style="font-size: 14px; display: block; text-align: right;"><strong>RM{{ total_investments|floatformat:2 }}</strong></span>
+                            </div>
+                        </div>
+                        <div class="card col-3 mx-2 p-2">
+                            <div style="border-left: 1.5px solid; padding-left: 5px;">
+                                <span style="font-size: 14px; display: block;"><strong>TOTAL INCOME</strong></span>
+                                <span style="font-size: 14px; display: block; text-align: right; color: green;"><strong>RM 320,230.35</strong></span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    
+    <div class="row mt-5">
+        <div class="col-12 d-flex flex-direction-row">
+            <div class="card col p-2" style="margin-right: 5px;">
+                <div class="d-flex flex-row">
+                    <i class="bi bi-arrow-up mx-2" style="font-size: 2rem; color: green;"></i>
+                    <div class="d-flex flex-column">
+                        <span style="font-size: 18px;">Index Fund A</span>
+                        <span>800,000</span>
+                        <span style="font-size: 12px;">0.000</span>
+                    </div>
+                </div>
+                <div class="mt-2" id="chartContainer1" style="height: 100px; width: 100%;"></div>
+            </div>
+            <div class="card col p-2" style="margin-right: 5px;">
+                <div class="d-flex flex-row">
+                    <i class="bi bi-arrow-up mx-2" style="font-size: 2rem; color: green;"></i>
+                    <div class="d-flex flex-column">
+                        <span style="font-size: 18px;">Index Fund B</span>
+                        <span>110,200</span>
+                        <span style="font-size: 12px;">0.000</span>
+                    </div>
+                </div>
+                <div class="mt-2" id="chartContainer2" style="height: 100px; width: 100%;"></div>
+            </div>
+            <div class="card col p-2" style="margin-right: 5px;">
+                <div class="d-flex flex-row">
+                    <i class="bi bi-arrow-up mx-2" style="font-size: 2rem; color: green;"></i>
+                    <div class="d-flex flex-column">
+                        <span style="font-size: 18px;">Index Fund C</span>
+                        <span>99,000</span>
+                        <span style="font-size: 12px;">0.000</span>
+                    </div>
+                </div>
+                <div class="mt-2" id="chartContainer3" style="height: 100px; width: 100%;"></div>
+            </div>
+            <div class="card col p-2" style="margin-right: 5px;">
+                <div class="d-flex flex-row">
+                    <i class="bi bi-arrow-up mx-2" style="font-size: 2rem; color: green;"></i>
+                    <div class="d-flex flex-column">
+                        <span style="font-size: 18px;">Index Fund D</span>
+                        <span>6,000</span>
+                        <span style="font-size: 12px;">0.000</span>
+                    </div>
+                </div>
+                <div class="mt-2" id="chartContainer4" style="height: 100px; width: 100%;"></div>
+            </div>
+        </div>
+    </div>
+
+    <div class="row mt-5">
+        <h5><strong>My Funds</strong></h5>
+        <table id="fundTable" class="table table-striped" style="width:100%">
+            <thead>
+                <tr>
+                    <th>Name</th>
+                    <th>Amount</th>
+                    <th>Type</th>
+                    <th>Average price</th>
+                    <th>Market price</th>
+                    <th>Net Asset Value (NAV)</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for each in data %}
+                <tr>
+                    <input type='hidden' value='{{ each.id }}' name='id'>
+                    <td>{{ each.name }}
+                        {% if each.sub != "" %}
+                        <br>
+                        <sub>{{ each.sub }}</sub>
+                        {% endif %}
+                    </td>
+                    <td>{% if each.total %}  RM{{ each.total|floatformat:2 }} {% else %} RM0 {% endif %}</td>
+                    <td>{{ each.type }}</td>
+                    <td>RM{{ each.avg_price|floatformat:2 }}</td>
+                    <td>RM{{ each.market_price|floatformat:2 }}</td>
+                    <td>RM{{ each.nav|floatformat:2 }}</td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+</div> 
+
+{% endblock %}
+
+{% block js %}
+
+<script>
+window.onload = function () {
+    var numberOfCharts = 4; // You can change this to the desired number
+
+    // An array to store the charts
+    var charts = [];
+    for (var chartIndex = 1; chartIndex <= numberOfCharts; chartIndex++) {
+        var limit = 30000;
+        var y = 100;    
+        var data = [];
+        var dataSeries = { type: "line", lineColor: "green", };
+        var dataPoints = [];
+        for (var i = 0; i < limit; i += 1) {
+            y += Math.round(Math.random() * 10 - 5);
+            dataPoints.push({
+                x: i,
+                y: y
+            });
+        }
+        dataSeries.dataPoints = dataPoints;
+        data.push(dataSeries);
+
+        //Better to construct options first and then pass it as a parameter
+        var options = {
+            zoomEnabled: true,
+            animationEnabled: true,
+            axisX: {
+                gridThickness: 0,
+                lineThickness: 0,
+                tickLength: 0,
+                labelFormatter: function(e){
+                    return "";
+                },
+            },
+            axisY: {
+                gridThickness: 0,
+                lineThickness: 0,
+                tickLength: 0,
+                labelFormatter: function(){
+                    return " ";
+                },
+            },
+            data: data  // random data
+        };
+
+        var chart = new CanvasJS.Chart("chartContainer" + chartIndex, options);
+
+        // Render the chart
+        chart.render();
+
+        // Store the chart in the charts array
+        charts.push(chart);
+    }
+}
+
+$(document).ready(function() {
+    $('#fundTable').DataTable({
+        // "paging": true,
+        "searching": true
+    });
+
+    $('#fundTable').on('click', 'td', function () {
+        var table = $('#fundTable').DataTable();
+        var cell = table.cell(this).data();
+        console.log(cell);
+        
+        var tr = $(this).closest('tr');
+        var row = table.row(tr).data();
+        console.log(row);
+        var id = $(tr).find('input[name="id"]').val();
+
+        window.open("{% url 'fundDetail' 123 %}".replace(123, id),"_self")
+    })
+});
+
+</script>
+
+{% endblock %}

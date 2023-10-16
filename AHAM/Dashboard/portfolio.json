@@ -1,0 +1,68 @@
+[
+    {
+        "id": 1,
+        "name": "Alaf Group",
+        "sub": "Megah Trust",
+        "desc": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",
+        "type": "Stocks",
+        "avg_price": 157.98,
+        "market_price": 134.12,
+        "nav": 3.2,
+        "transactions": [
+            {
+                "created_at": "15 Oct 2023",
+                "amount": 10.3,
+                "unit": 2
+            }
+        ],
+        "total": 122.0
+    },
+    {
+        "id": 2,
+        "name": "Kasih Unit Trust",
+        "sub": "",
+        "desc": "Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.",
+        "type": "Stocks",
+        "avg_price": 12619,
+        "market_price": 134.12,
+        "nav": 3.4,
+        "transactions": [
+            {
+                "created_at": "16 Oct 2023",
+                "amount": 1.5,
+                "unit": 7.0
+            }
+        ],
+        "total": 10.5
+    },
+    {
+        "id": 3,
+        "name": "Murni Investment",
+        "sub": "",
+        "desc": "Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.",
+        "type": "Unit Trust",
+        "avg_price": 12619,
+        "market_price": 134.12,
+        "nav": 4.5,
+        "transactions": [],
+        "total": 0
+    },
+    {
+        "id": 4,
+        "name": "S&P 500",
+        "sub": "",
+        "desc": "Cras fermentum odio eu feugiat pretium nibh.",
+        "type": "Stocks",
+        "avg_price": 53678,
+        "market_price": 123,
+        "nav": 4.32,
+        "transactions": [
+            {
+                "created_at": "16 Oct 2023",
+                "amount": 55,
+                "unit": 2
+            }
+        ],
+        "total": 110.0
+    }
+]

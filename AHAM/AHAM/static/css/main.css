@@ -1,0 +1,37 @@
+head, body, h1, h2, h3, h4, h5, h6 {
+    font-family: DidactGothic;
+}
+
+::selection {
+    background-color: bisque;
+}
+
+.wrapper {
+    display: flex;
+    width: 100%;
+    align-items: stretch;
+}
+
+#sidebar {
+    min-width: 280px;
+    max-width: 280px;
+    min-height: 100vh;
+}
+
+#sidebar.active {
+    margin-left: -280px;
+}
+
+@media (max-width: 768px) {
+    #sidebar {
+        margin-left: -280px;
+    }
+    #sidebar.active {
+        margin-left: 0;
+    }
+}
+
+/* Hover over as pointer */
+#fundTable td:hover {
+    cursor: pointer;
+}

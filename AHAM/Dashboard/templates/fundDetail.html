@@ -1,0 +1,349 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block header %}
+<style>
+    .content {
+        background-color: white;
+        padding: 20px;
+        border-radius: 10px;
+    }
+
+    /* for top action buttons */
+    .noti-container {
+        display: inline-flex;
+        margin-left: 15px;
+    }
+
+    .pfp-container {
+        display: inline-flex;
+        margin-left: 8px;
+    }
+
+    .noti-count {
+        color: #fff;
+        background-color: #5840BB;
+        border-radius: 50%;
+        border: 2px solid #5840BB;
+        font-size: 7px;
+        font-style: normal;
+        padding: 2px 5px;
+        vertical-align: top;
+        margin: -10px 0 0 -12px;
+        position: relative;
+    }
+    /* end of top action buttons */
+    
+    .label-title {
+        font-weight: bold;
+    }
+
+    .detail-row {
+        margin: 20px 0 20px 0;
+    }
+</style>
+{% endblock %}
+
+{% block sidebar %}
+    {% include 'lib/_sidebar.html' %}
+{% endblock %}
+
+{% block content %}
+<div class="content">
+    <!-- top area of dashboard -->
+    <div class="row">
+        <div class="col-12">
+            <div class="d-flex justify-content-between">
+                <a href="{% url 'dashboard' %}" type="button" class="btn m-0" style="background-color: #F3F6FF;"><i class="bi bi-arrow-left" style="font-size: 1rem;"></i></a>
+                
+                <div class="main d-flex">
+                    <!-- notification button and count mark -->
+                    <div class="noti-container">
+                        <button type="button" class="btn m-0" style="background-color: #F3F6FF;">
+                            <i class="bi bi-bell" style="font-size: 1rem;"></i>
+                        </button>
+                    </div>
+                    <div>
+                        <span class="float-right noti-count" id="notiCount">0</span>
+                    </div>
+                    <!-- profile pic -->
+                    <div class="pfp-container">
+                        <button type="button" class="btn m-0" style="background-color: #F3F6FF;">
+                            <i class="bi bi-person-circle" style="font-size: 1rem;"></i>
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- end of top area -->
+
+    <div class="container">
+        <div class="row mt-2">
+            <div class="card p-0" style="border-width: 0; box-shadow: none;">
+                <div class="p-2">
+                    <ul class="nav nav-tabs" data-bs-tabs="tabs">
+                        <li class="nav-item">
+                            <a class="nav-link active" aria-current="true" data-bs-toggle="tab" href="#details">Details</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" data-bs-toggle="tab" href="#history">Performance History</a>
+                        </li>
+                    </ul>
+                </div>
+                <div class="card-body tab-content">
+                    <!-- Fund Details tab -->
+                    <div class="tab-pane active" id="details">
+                        <div class="row">
+                            <div class="col">
+                                <h5 class="card-title"><strong>{{ item.name }}</strong></h5>
+                            </div>
+                            <div class="col" style="text-align: right;">
+                                <button type="button" class="btn btn-primary m-auto" style="width: fit-content; text-transform: capitalize;" data-bs-toggle="modal" data-bs-target="#investModal">Invest</button>
+                            </div>
+                            <!-- Modal -->
+                            <div class="modal fade" id="investModal" tabindex="-1" aria-labelledby="investModalLabel" aria-hidden="true">
+                                <div class="modal-dialog">
+                                    <form method="POST" onsubmit="return false;">
+                                        {% csrf_token %}
+                                        <div class="modal-content">
+                                            <div class="modal-header">
+                                                <h5 class="modal-title" id="investModalLabel">Add Investment</h5>
+                                                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                            </div>
+                                            <div class="modal-body">
+                                                <div class="row">
+                                                    <div class="col">
+                                                        <label for="amount" class="form-label">Amount (RM)</label>
+                                                        <input type="number" class="form-control" id="amount" name="amount">
+                                                    </div>
+                                                    <div class="col">
+                                                        <label for="unit" class="form-label">Unit</label>
+                                                        <input type="number" class="form-control" id="unit" name="unit">
+                                                    </div>
+                                                </div>                                           
+                                            </div>
+                                            <div class="modal-footer">
+                                                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal" style="text-transform: capitalize;">Close</button>
+                                                <button type="submit" class="btn btn-primary" style="text-transform: capitalize;" id="addInvest">Submit</button>
+                                            </div>
+                                        </div>
+                                    </form>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row detail-row">
+                            <div class="col">
+                                <span class="label-title">Description</span>
+                                <br>
+                                <span>{{ item.desc }}</span>
+                            </div>
+                        </div>
+                        <div class="row detail-row">
+                            <div class="col-6">
+                                <span class="label-title">Investment Type</span>
+                                <br>
+                                <span>{{ item.type }}</span>
+                            </div>
+                            <div class="col-6">
+                                <span class="label-title">Current Net Asset Value (NAV)</span>
+                                <br>
+                                <span>RM{{ item.nav }}</span>
+                            </div>
+                        </div>
+                        <div class="mt-5">
+                            <h5><strong>Transaction History</strong></h5>
+                            <table id="historyTable" class="table table-striped" style="width:100%">
+                                <thead>
+                                    <tr>
+                                        <th>Amount</th>
+                                        <th>Unit</th>
+                                        <th>Investment Date</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    {% for each in item.transactions %}
+                                    <tr>
+                                        <input type='hidden' value='{{ each.id }}' name='id'>
+                                        <td>RM{{ each.amount|floatformat:2 }}</td>
+                                        <td>{{ each.unit }}</td>
+                                        <td>{{ each.created_at }}</td>
+                                    </tr>
+                                    {% endfor %}
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+
+                    <!-- Performance History tab -->
+                    <div class="tab-pane" id="history">
+                        <figure class="highcharts-figure">
+                            <div id="chartContainer"></div>
+                        </figure>
+                    </div>
+                </div>
+            </div>
+        </div>
+    
+        <div class="row mt-5">
+        </div>    
+    </div>
+    
+{% endblock %}
+
+{% block js %}
+<script>
+Highcharts.chart('chartContainer', {
+    chart: {
+        type: 'spline',
+        scrollablePlotArea: {
+            minWidth: 600,
+            scrollPositionX: 1
+        }
+    },
+    title: {
+        text: 'Performance History',
+        align: 'left'
+    },
+    subtitle: {
+        text: 'January 2023 - October 2023',
+        align: 'left'
+    },
+    xAxis: {
+        type: 'datetime',
+        labels: {
+            overflow: 'justify',
+        },
+        min: Date.UTC(2023, 0, 1), // Start date: January 1, 2023
+        max: Date.UTC(2023, 9, 1),  // End date: October 1, 2023
+        dateTimeLabelFormats: {
+            day: '%e %b %Y' // Format for Malaysian date (e.g., 24 Jan 2023)
+        }
+    },
+    yAxis: {
+        title: {
+            text: 'Net Asset Value',
+        },
+        minorGridLineWidth: 0,
+        gridLineWidth: 0,
+        alternateGridColor: null
+    },
+    tooltip: {
+        valueSuffix: 'MYR',
+        xDateFormat: '%e %b %Y' // Format for the tooltip date
+    },
+    plotOptions: {
+        spline: {
+            lineWidth: 4,
+            states: {
+                hover: {
+                    lineWidth: 5,
+                }
+            },
+            marker: {
+                enabled: false
+            },
+            pointInterval: 24 * 3600 * 1000, // one day
+            pointStart: Date.UTC(2023, 0, 1)
+        }
+    },
+    series: [{
+        name: 'Net Asset Value',
+        color: 'darkgreen',
+        lineColor: 'green',
+        data: (function () {
+            var data = [];
+            var currentDate = new Date(2023, 0, 1);
+            var endDate = new Date(2023, 9, 1);
+            var value = 4.1;
+            var range = 0.100; // Adjust this to control data fluctuations
+
+            while (currentDate <= endDate) {
+                data.push([currentDate.getTime(), value]);
+                currentDate.setDate(currentDate.getDate() + 1); // Increment date by one day
+                value += Math.random() * range - range / 2; // Generate random value
+            }
+
+            return data;
+        })()
+    }],
+    navigation: {
+        menuItemStyle: {
+            fontSize: '10px'
+        }
+    }
+});
+
+// Only allow modal submit upon value entered
+$(document).ready(function() {
+
+    var amountInput = $('#amount');
+    var unitInput = $('#unit');
+    var addInvestButton = $('#addInvest');
+
+    // Function to enable/disable the button based on input values
+    function disableSubmit() {
+        if (amountInput.val().trim() !== '' && unitInput.val().trim() !== '') {
+            addInvestButton.prop('disabled', false);
+        } else {
+            addInvestButton.prop('disabled', true);
+        }
+    }
+
+    // Add input event listeners
+    amountInput.on('input', disableSubmit);
+    unitInput.on('input', disableSubmit);
+
+    // Initially, the button should be disabled if the form is empty
+    disableSubmit();
+
+    addInvestButton.on('click', function(e) {
+        e.preventDefault();
+        var data = {
+            "amount": amountInput.val(),
+            "unit": unitInput.val()
+        };
+
+        console.log(data);
+
+        var url = "{% url 'addFund' 123 %}".replace(123, {{item.id}});
+
+        // Send an AJAX request
+        $.ajax({
+            type: "POST",
+            url: url,
+            data: data,
+            dataType: "json",
+            headers: {
+                'X-CSRFToken': csrftoken,
+            },
+            success: function(result) {
+                if (result.result == "success") {
+                    console.log("done")
+                    Swal.fire({
+                        title: 'Successful',
+                        text: `You have successfully invested in {{ item.name }}!`,
+                        icon: 'success'
+                    }).then((result) => {
+                        if (result.isConfirmed) {
+                            location.reload(); // Reload the page
+                        }
+                    });
+                } else {
+                    console.log("something went wrong")
+                }
+                
+            },
+            error: function(xhr, status, error) {
+                alert(error);
+            }
+        }); 
+    });
+
+    $('#historyTable').DataTable({
+        "searching": true
+    });
+});
+
+</script>
+
+{% endblock %}

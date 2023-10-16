@@ -1,0 +1,91 @@
+<style>
+    /* hide bg of navbar */
+    .navbar {
+        box-shadow: none;
+        border-bottom: 1px solid #aaa;
+    }
+
+    /* center wording beside logo */
+    .navbar-nav {
+        align-self: self-end;
+    }
+
+    /* underline when hover */
+    .navbar ul li .underline {
+        height: 3px;
+        background-color: transparent;
+        width: 0%;
+        transition: width 0.2s, background-color 0.5s;
+        margin: 0 auto;
+    }
+
+    .navbar ul li.active-link .underline {
+        width: 100%;
+        background-color: grey;
+    }
+
+    .navbar ul li:hover .underline {
+        background-color: grey;
+        width: 100%;
+    }
+
+    .navbar ul li:active a {
+        transition: none;
+        color: rgba(255,255,255,0.76);
+    }
+
+    .navbar ul li:active .underline {
+        transition: none;
+        background-color: rgba(255,255,255,0.76);
+    }
+    /* end of underline */
+</style>
+
+<nav class="navbar navbar-expand-lg">
+    <div class="container-fluid">
+        <!-- logo -->
+        <a class="navbar-brand" href="#" style="font-family: Montserrat-Regular; font-size: 20px;"><i class="bi bi-flower1"></i> Lilly & Daisy</a>
+        <!-- end of logo -->
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarText" aria-controls="navbarText" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+
+        <div class="collapse navbar-collapse" id="navbarText">
+            <!-- top navbar -->
+            <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                <li class="nav-item">
+                    <a class="nav-link active" aria-current="page" href="#">Product</a>
+                    <div class="underline"></div>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="#">About</a>
+                    <div class="underline"></div>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="#">App</a>
+                    <div class="underline"></div>
+                </li>
+            </ul>
+            <!-- end of top navbar -->
+
+            <!-- login/sign up button -->
+            <div style="position: relative;">
+                <div style="border-radius: 30px; background-color: white; padding: 10px 20px; width: 180px;">
+                    <a href="#" style="color: black; text-decoration: none;">Login</a>
+                </div>
+                <div style="border-radius: 30px; background-color: black; padding: 10px 20px; width: 100px; position: absolute; top: 0; right: 0;">
+                    <a href="#" style="color: white; text-decoration: none;">Sign up</a>
+                </div>
+            </div>
+            <!-- end of login/sign up button -->
+        </div>
+    </div>
+</nav>
+
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script>
+    $('.nav-link').on('click', function() {
+        $('.active').removeClass('active');
+        $(this).addClass('active');
+    });
+</script>

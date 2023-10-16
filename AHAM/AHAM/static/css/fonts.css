@@ -1,0 +1,16 @@
+@font-face {
+    font-family: Montserrat-Regular;
+    src: url(../fonts/Montserrat/Montserrat-Regular.ttf);
+    /* font-display: swap; */
+}
+
+@font-face {
+    font-family: Montserrat-Black;
+    src: url(../fonts/Montserrat/Montserrat-Black.ttf);
+}
+
+@font-face {
+    font-family: DidactGothic;
+    src: url(../fonts/DidactGothic-Regular.ttf);
+}
+

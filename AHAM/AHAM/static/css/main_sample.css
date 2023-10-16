@@ -1,0 +1,488 @@
+body {
+  font-family: Arial, Helvetica, "Open Sans";
+  zoom: 0.85;
+}
+
+:root {
+  --light-blue: #0091da;
+  --blue: #005eb8;
+  --dark-blue: #002b80;
+  --black: #0d0d0d;
+  --grey: #4d4d4d;
+  --light-grey: #f2f2f2;
+  --green: #00b33c;
+  --kpmg-green: #00a3a1;
+  --yellow: #fcb232;
+  --red: #df0d0d;
+  --purple: rgb(90, 25, 87);
+  --light-purple: #6d2077;
+  --gradient-purple: linear-gradient(
+    0deg,
+    rgba(174, 131, 187, 1) 0%,
+    rgba(82, 14, 85, 1) 100%
+  );
+  --gradient-blue: linear-gradient(
+    0deg,
+    rgba(62, 115, 151, 1) 2%,
+    rgba(20, 36, 123, 1) 95%
+  );
+  --gradient-turquoise: linear-gradient(
+    0deg,
+    rgba(124, 188, 179, 1) 2%,
+    rgba(37, 224, 208, 1) 95%
+  );
+  --input-padding-x: 0.75rem;
+  --input-padding-y: 0.65rem;
+}
+
+.no-padding {
+  padding: 0 !important;
+  margin: 0 !important;
+}
+
+.styled-form-label-group {
+  position: relative;
+  margin-bottom: 1rem;
+}
+
+.styled-form-label-group > input,
+.styled-form-label-group > label {
+  padding: var(--input-padding-y) var(--input-padding-x);
+  height: 45px;
+}
+
+.styled-form-label-group > label {
+  position: absolute;
+  top: 0;
+  left: 0;
+  display: block;
+  width: 100%;
+  margin-bottom: 0;
+  /* Override default `<label>` margin */
+  line-height: 1.5;
+  color: #495057;
+  border: 1px solid transparent;
+  border-radius: 0.25rem;
+  transition: all 0.1s ease-in-out;
+}
+
+.styled-form-label-group input::-webkit-input-placeholder {
+  color: transparent;
+}
+
+.styled-form-label-group input:-ms-input-placeholder {
+  color: transparent;
+}
+
+.styled-form-label-group input::-ms-input-placeholder {
+  color: transparent;
+}
+
+.styled-form-label-group input::-moz-placeholder {
+  color: transparent;
+}
+
+.styled-form-label-group input::placeholder {
+  color: transparent;
+}
+
+.styled-form-label-group input:not(:placeholder-shown) {
+  padding-top: calc(var(--input-padding-y) + var(--input-padding-y) * (2 / 3));
+  padding-bottom: calc(var(--input-padding-y) / 3);
+}
+
+.styled-form-label-group input:not(:placeholder-shown) ~ label {
+  padding-top: calc(var(--input-padding-y) / 3);
+  padding-bottom: calc(var(--input-padding-y) / 3);
+  font-size: 12px;
+  color: #777;
+}
+
+.kpmg-nav:hover {
+  text-decoration: underline !important;
+  color: var(--blue) !important;
+}
+
+.color-kpmg-blue {
+  color: var(--dark-blue) !important;
+  font-weight: normal;
+}
+
+.bg-kpmg-blue {
+  background-color: var(--dark-blue) !important;
+}
+
+.color-kpmg-grey {
+  color: var(--grey) !important;
+  font-weight: normal;
+}
+
+.btn-main {
+  background-color: var(--dark-blue);
+  color: white;
+}
+
+.btn:hover {
+  color: white;
+}
+
+a {
+  color: var(--blue);
+}
+
+a:link {
+  text-decoration: none !important;
+}
+
+.content-section {
+  padding: 0px 80px;
+}
+
+h1 {
+  font-size: 22px;
+}
+
+h2 {
+  font-size: 20px;
+  font-weight: bold;
+}
+
+h3 {
+  font-size: 18px;
+  font-weight: bold;
+}
+
+h4 {
+  font-size: 16px;
+  font-weight: bold;
+}
+
+h5 {
+  font-size: 14px;
+}
+
+.grey-header {
+  font-weight: bold;
+  background-color: var(--light-grey);
+  padding: 12px;
+}
+
+.wrapper {
+  display: table;
+  width: 100%;
+  margin-right: -10px !important;
+}
+
+.left {
+  display: table-cell;
+  margin-right: -10px !important;
+}
+
+.cart-icon {
+  background-color: var(--dark-blue);
+  display: inline-block;
+  color: white;
+  margin-top: 2px;
+}
+
+.cart-img {
+  padding: 10px;
+  background-size: 100% 100%;
+  background-image: url(/static/assets/bootstrap/bi/cart.svg);
+}
+
+.cart-img:hover {
+  background-image: url(/static/assets/bootstrap/bi/cart-fill.svg);
+}
+
+.cart-count {
+  color: #fff;
+  background-color: var(--dark-blue);
+  border-radius: 50%;
+  border: 2px solid white;
+  box-shadow: 0 0 6px #9ecaed;
+  font-size: 7px;
+  padding: 2px 5px;
+  vertical-align: top;
+  margin: -10px 0 0 -12px;
+  z-index: 10px;
+  position: relative;
+}
+
+.modal-close {
+  color: grey;
+  font-size: 2em;
+  position: absolute;
+  right: 10px;
+  top: 5px;
+}
+
+.modal-backdrop {
+  opacity: 0.85 !important;
+  width: 100% !important;
+  height: 100% !important;
+}
+
+.parent {
+  display: table;
+}
+
+.child {
+  display: table-cell;
+  vertical-align: middle;
+  padding-left: 20px;
+}
+
+::-webkit-scrollbar {
+  width: 10px;
+}
+
+::-webkit-scrollbar-track {
+  background: #f1f1f1;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #888;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: #555;
+}
+
+.nav-margin {
+  margin-bottom: 60px;
+}
+
+.btn-width {
+  width: 100%;
+  margin-right: 10px;
+}
+
+.footer-padding {
+  padding: 0px 150px;
+}
+
+.website-text {
+  background-color: rgb(0, 145, 218);
+  padding: 10px 80px;
+}
+
+.website-font {
+  color: white;
+  font-size: 17px;
+}
+
+.login-section > form > h1 {
+  font-size: 30px;
+}
+
+.card-reset {
+  width: 500px;
+}
+
+.signUp-section,
+.login-section {
+  width: inherit;
+}
+
+.icon-socmed {
+  padding: 0 1rem;
+}
+
+/* Responsive */
+
+/* smartphones, iPhone, portrait 480x320 phones */
+@media (min-width: 320px) {
+  .contact-us-div {
+    padding: 0px 50px;
+  }
+}
+
+@media (max-width: 440px) {
+  .footer-padding {
+    padding: 0px 50px;
+  }
+
+  .website-text {
+    padding: 10px 20px;
+  }
+
+  .website-font {
+    font-size: 16px;
+  }
+
+  .card-reset {
+    width: 300px;
+  }
+}
+
+/* portrait e-readers (Nook/Kindle), smaller tablets @ 600 or @ 640 wide. */
+@media (min-width: 481px) {
+  .contact-us-div {
+    padding: 0px 50px;
+  }
+}
+
+/* limit for smaller tablets */
+@media (max-width: 600px) {
+  .modal-login {
+    min-width: 100%;
+  }
+}
+
+/* portrait tablets, portrait iPad, landscape e-readers, landscape 800x480 or 854x480 phones */
+@media (min-width: 641px) {
+  .contact-us-div {
+    padding: 0px 50px;
+  }
+
+  video {
+    height: 300px;
+  }
+
+  .modal-login {
+    max-width: 460px;
+  }
+
+  .icon-socmed {
+    padding: 0 0.5rem;
+  }
+}
+
+/* tablet, landscape iPad, lo-res laptops ands desktops */
+@media (min-width: 961px) {
+  .contact-us-div {
+    padding: 0px 50px;
+  }
+
+  .login-section > form > h1 {
+    font-size: 45px;
+  }
+
+  .text-reset {
+    padding: 20px 150px;
+  }
+}
+
+/* big landscape tablets, laptops, and desktops */
+@media (min-width: 1025px) {
+  .contact-us-div {
+    padding: 0px 250px;
+  }
+}
+
+/* hi-res laptops and desktops */
+@media (min-width: 1290px) {
+  .banner-img {
+    height: 300px;
+  }
+
+  .big-banner {
+    height: 700px;
+  }
+}
+
+/* wide desktop screen */
+@media (min-width: 2000px) {
+  .banner-img {
+    height: 500px;
+  }
+
+  .nav-margin {
+    margin-bottom: 70px;
+  }
+}
+
+/* For subscription page */
+@media screen and (max-width: 1396px) {
+  .pricing-title-1 {
+    display: none;
+  }
+}
+
+@media screen and (min-width: 1397px) {
+  .pricing-title-2 {
+    display: none;
+  }
+}
+
+.help-block {
+  color: red;
+}
+
+.stepper-wrapper {
+  margin-top: auto;
+  display: flex;
+  justify-content: space-between;
+  width: 100%;
+  margin-top: 20px;
+}
+.stepper-item {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  flex: 1;
+
+  @media (max-width: 768px) {
+    font-size: 12px;
+  }
+}
+
+.stepper-item::before {
+  position: absolute;
+  content: "";
+  border-bottom: 2px solid #ccc;
+  width: 100%;
+  top: 20px;
+  left: -50%;
+  z-index: 2;
+}
+
+.stepper-item::after {
+  position: absolute;
+  content: "";
+  border-bottom: 2px solid #ccc;
+  width: 100%;
+  top: 20px;
+  left: 50%;
+  z-index: 2;
+}
+
+.stepper-item .step-counter {
+  position: relative;
+  z-index: 5;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  background: #ccc;
+  margin-bottom: 6px;
+}
+
+.stepper-item.completed .step-counter {
+  background-color: #4bb543;
+}
+
+.stepper-item.active {
+  font-weight: bold;
+}
+
+.stepper-item.completed::after {
+  position: absolute;
+  content: "";
+  border-bottom: 2px solid #4bb543;
+  width: 100%;
+  top: 20px;
+  left: 50%;
+  z-index: 3;
+}
+
+.stepper-item:first-child::before {
+  content: none;
+}
+.stepper-item:last-child::after {
+  content: none;
+}
