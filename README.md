@@ -1,6 +1,6 @@
 # FundAsset
 
-This project is developed using Python and Django Framework, Bootstrap and JQuery, on top of CSS, HTML and JavaScript.
+This project is developed using Python and Django Framework, Bootstrap and JQuery, on top of basic CSS, HTML5 and JavaScript.
 
 Below are the steps to run this code:
 1. Install Python
@@ -14,8 +14,8 @@ Below are the steps to run this code:
 _Please note that this project uses JSON file to store data. All graphs are for illustration purposes only._ 
 
 **Functionalities**
-1. _**"Dashboard"**_ showing investor's portfolio
-2. Scroll down to find _**"My Funds"**_ table showing details of each fund and ability to add investment
-3. _**"Fund"**_ tab showing all existing funds
-4. _**"Performance History"**_ tab displaying the overall Net Asset Value for all the funds listed under _**"My Funds"**_
-5. _**"All Transactions"**_ tab where all transactions of the investment made are listed
+1. **Dashboard**: An overview of the investor's portfolio
+2. **My Funds**: A table displaying details of each fund. Click on a row to view fund details or add investments
+3. **Fund**: A menu showcasing all existing uninvested funds
+4. **Performance History**: A menu displaying the Net Asset Value (NAV) of all funds listed in **"My Funds"**
+5. **All Transactions**: A menu listing all investment transactions
