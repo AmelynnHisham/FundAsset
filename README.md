@@ -1,6 +1,6 @@
 # FundAsset
 
-This project is developed using Python and Django Framework, Bootstrap and JQuery, on top of basic CSS, HTML5 and JavaScript.
+This project is developed using Python and Django Framework as back-end. Basic CSS, HTML5 and JavaScript, on top of Bootstrap and JQuery for front-end.
 
 Below are the steps to run this code:
 1. Install Python
