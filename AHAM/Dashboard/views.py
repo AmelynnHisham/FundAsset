@@ -65,14 +65,12 @@ def addFund(request, id):
                 with open(json_file_path, 'r') as json_file:
                     data = json.load(json_file)
                 
-                print("data", data)
                 for item in data:
                     if str(item.get("id")) == id:
                         created_at = datetime.now().strftime("%#d %b %Y")
                         amount = float(request.POST.get('amount'))
                         unit = float(request.POST.get('unit'))
                         
-                        print(item, created_at)
                         new_data = {
                             "created_at": created_at,
                             "amount": amount,
@@ -85,7 +83,6 @@ def addFund(request, id):
                 with open(json_file_path, 'w') as json_file:
                     json.dump(data, json_file, indent=4)
                 
-                print(request.POST.get('amount'), request.POST.get('unit'))
                 return JsonResponse({"result": "success"})
 
             except FileNotFoundError:
@@ -137,5 +134,4 @@ def transactions(request):
     return render(request, "transactions.html", context)
 
 def performance(request):
-
     return render(request, "performance.html", {})
