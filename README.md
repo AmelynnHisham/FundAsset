@@ -14,8 +14,8 @@ Below are the steps to run this code:
 _Please note that this project uses JSON file to store data. All graphs are for illustration purposes only._ 
 
 **Functionalities**
-1. **Dashboard**: An overview of the investor's portfolio
-2. **My Funds**: A table displaying details of each fund. Click on a row to view fund details or add investments
-3. **Fund**: A menu showcasing all existing uninvested funds
+1. **Dashboard**: An overview of the investor's portfolio and funds
+2. **My Funds**: A table displaying information of each fund. Click on a row to view fund details, transaction history or add investments
+3. **Funds**: A menu showcasing other available funds
 4. **Performance History**: A menu displaying the Net Asset Value (NAV) of all funds listed in **"My Funds"**
-5. **All Transactions**: A menu listing all investment transactions
+5. **All Transactions**: A menu listing all investment transactions made
